@@ -20,23 +20,23 @@ describe('User class', function () {
     expect(this.user).to.have.keys(['firstName', 'lastName', 'books', 'pets']);
   });
 
-  it('should have getFullName method', function () {
+  it('should have a "getFullName" method', function () {
     expect(this.user.getFullName).to.exist;
   });
 
-  it('should have addPet method', function () {
+  it('should have an "addPet" method', function () {
     expect(this.user.addPet).to.exist;
   });
 
-  it('should have countPets method', function () {
+  it('should have a "countPets" method', function () {
     expect(this.user.countPets).to.exist;
   });
 
-  it('should have addBook method', function () {
+  it('should have an "addBook" method', function () {
     expect(this.user.addBook).to.exist;
   });
 
-  it('should have getBooksNames method', function () {
+  it('should have a "getBooksNames" method', function () {
     expect(this.user.getBooksNames).to.exist;
   });
 
