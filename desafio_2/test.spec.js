@@ -120,12 +120,6 @@ describe('Container class features', function () {
     expect(afterDeleteContent.length).to.be.below(initialContent.length);
   });
 
-  it('should throw error if no file path is passed to constructor', function () {
-    expect(function () {
-      new Container();
-    }).to.throw('An error occurred while creating the file.');
-  });
-
   it('should throw error when it searches an object with non existant id', function () {
     const invalidId = 123456;
     expect(this.container.getById(invalidId)).to.be.eventually.equal(
