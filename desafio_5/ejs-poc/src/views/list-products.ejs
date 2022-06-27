@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+  <body>
+    <%- include('./partials/menu') %>
+
+      <div class="ui container">
+        <h1 class="ui header">Vista de productos</h1>
+        <% if(products.length> 0) { %>
+          <table class="ui celled table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Foto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% products.forEach(product=> { %>
+                <tr>
+                  <td data-label="Nombre">
+                    <%= product.title %>
+                  </td>
+                  <td data-label="Precio">
+                    $<%= product.price %>
+                  </td>
+                  <td data-label="Foto"><img class="ui mini image" src="<%= product.thumbnail %>" /></td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+          <% } else { %>
+            <div class="ui info message">
+              <p>No hay productos.</p>
+            </div>
+            <% } %>
+      </div>
+  </body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+  <body>
+    <%- include('./partials/menu') %>
+
+      <div class="ui container">
+        <h1 class="ui header">Agregar un producto</h1>
+        <form class="ui form" action="products" method="post">
+          <div class="field">
+            <label for="title">Título</label>
+            <input id="title" name="title" type="text">
+          </div>
+          <div class="field">
+            <label for="price">Precio</label>
+            <input id="price" name="price" type="text">
+          </div>
+          <div class="field">
+            <label for="thumbnail">Thumbnail</label>
+            <input id="thumbnail" name="thumbnail" type="text">
+          </div>
+          <button class="ui button fluid primary" type="submit">Agregar</button>
+        </form>
+      </div>
+  </body>
+
+</html>
