@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> head }}
+<body>
+  {{> menu }}
+  <div class="ui container">
+    <h1 class="ui header">Vista de productos</h1>
+    {{#if products}}
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Foto</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+        <tr>
+          <td data-label="Nombre">{{this.title}}</td>
+          <td data-label="Precio">${{this.price}}</td>
+          <td data-label="Foto"><img class="ui mini image" src="{{this.thumbnail}}" /></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <div class="ui info message">
+      <p>No hay productos.</p>
+    </div>
+    {{/if}}
+  </div>
+</body>
+</html>
