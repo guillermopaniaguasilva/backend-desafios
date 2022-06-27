@@ -1,0 +1,23 @@
+include /partials/head.pug
+
+include /partials/menu.pug
+
+div(class='ui container')
+  h1(class='ui header') Vista de productos
+  if (products.length)
+    table(class='ui celled table')
+      thead
+        tr
+          th Nombre
+          th Precio
+          th Foto
+      tbody
+        each product in products
+          tr
+            td(data-label='Nombre') #{product.title}
+            td(data-label='Precio') $#{product.price}
+            td(data-label='Foto')
+              img(class='ui mini image', src=(product.thumbnail))
+  else
+    div(class='ui info message')
+      p No hay productos.

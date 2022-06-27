@@ -1,0 +1,17 @@
+include /partials/head.pug
+
+include /partials/menu.pug
+
+div(class='ui container')
+  h1(class='ui header') Agregar producto
+  form(class='ui form', action='products', method='post')
+    div(class='field')
+      label(for='title') Título
+      input(id='title', name='title', type='text')
+    div(class='field')
+      label(for='price') Precio
+      input(id='price', name='price', type='text')
+    div(class='field')
+      label(for='thumbnail') Thumbnail
+      input(id='thumbnail', name='thumbnail', type='text')
+    button(class='ui button fluid primary', type='submit') Agregar
