@@ -1,3 +1,19 @@
 .header {
   margin-top: 1rem !important;
 }
+
+.message-author {
+  color: blue;
+}
+
+.message-timestamp {
+  color: brown;
+}
+
+.message-text {
+  color: green;
+}
+
+.messages {
+  margin: 2rem 0;
+}

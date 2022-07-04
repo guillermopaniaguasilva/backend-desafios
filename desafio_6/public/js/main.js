@@ -16,7 +16,7 @@ function renderProducts(products) {
       </tbody>
     </table>
   `;
-  const p = products
+  const productsHtml = products
     .map((product) => {
       return `
       <tr>
@@ -28,10 +28,23 @@ function renderProducts(products) {
     })
     .join(' ');
   document.querySelector('#products').innerHTML = html;
-  document.querySelector('tbody').innerHTML = p;
+  document.querySelector('tbody').innerHTML = productsHtml;
 }
 
-function addProduct(e) {
+function renderMessages(messages) {
+  const html = messages
+    .map((message) => {
+      return `
+        <div>
+          <strong class="message-author">${message.author}</strong> <span class="message-timestamp">[${message.timestamp}]</span>: <em class="message-text">${message.text}</em>
+        <div>
+    `;
+    })
+    .join(' ');
+  document.querySelector('#messages').innerHTML = html;
+}
+
+function addProduct() {
   const product = {
     title: document.querySelector('#title').value,
     price: document.querySelector('#price').value,
@@ -41,12 +54,72 @@ function addProduct(e) {
   return false;
 }
 
-const submitBtn = document.querySelector('#submit');
-submitBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  addProduct(e);
-});
+function sendMessage() {
+  const message = {
+    author: document.querySelector('#email').value,
+    text: document.querySelector('#message').value,
+    timestamp: new Date().toLocaleString(),
+  };
+  socket.emit('newMessage', message);
+  return false;
+}
 
 socket.on('products', (products) => {
   renderProducts(products);
+});
+
+socket.on('messages', (messages) => {
+  renderMessages(messages);
+});
+
+$(document).ready(function () {
+  $('#add-product form').form({
+    fields: {
+      title: {
+        identifier: 'title',
+        rules: [{ type: 'empty', prompt: 'Por favor, ingresá un título' }],
+      },
+      price: {
+        identifier: 'price',
+        rules: [{ type: 'empty', prompt: 'Por favor, ingresá un precio' }],
+      },
+      thumbnail: {
+        identifier: 'thumbnail',
+        rules: [
+          {
+            type: 'empty',
+            prompt: 'Por favor, ingresá la dirección de una imagen.',
+          },
+        ],
+      },
+    },
+    onSuccess: function (event) {
+      event.preventDefault();
+      addProduct(event);
+      return false;
+    },
+  });
+
+  $('#message-center form').form({
+    fields: {
+      email: {
+        identifier: 'email',
+        rules: [
+          {
+            type: 'empty',
+            prompt: 'Por favor, ingresá tu email.',
+          },
+          {
+            type: 'email',
+            prompt: 'Por favor, ingresá un email válido.',
+          },
+        ],
+      },
+    },
+    onSuccess: function (event) {
+      event.preventDefault();
+      sendMessage(event);
+      return false;
+    },
+  });
 });

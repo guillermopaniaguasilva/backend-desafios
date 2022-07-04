@@ -2,6 +2,7 @@ const { createServer } = require('http');
 const express = require('express');
 const hbs = require('hbs');
 const socketIO = require('socket.io');
+const Container = require('./Container');
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -40,15 +41,24 @@ const products = [
       'https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-1024.png',
   },
 ];
+const container = new Container('./data/messages/messages.json');
 
-io.sockets.on('connection', (socket) => {
-  console.log('Un cliente se ha conectado.');
+io.sockets.on('connection', async (socket) => {
+  console.log('A client has connected.');
+  const messages = await container.getAll();
 
   socket.emit('products', products);
+
+  socket.emit('messages', messages);
 
   socket.on('newProduct', (data) => {
     products.push(data);
     io.sockets.emit('products', products);
+  });
+
+  socket.on('newMessage', async (data) => {
+    await container.save(data);
+    io.sockets.emit('messages', await container.getAll());
   });
 });
 

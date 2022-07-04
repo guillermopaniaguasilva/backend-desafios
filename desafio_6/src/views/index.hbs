@@ -3,25 +3,55 @@
 {{> head }}
 <body>
   <div class="ui container">
-    <h1 class="ui header">Agregar un producto</h1>
-    <form class="ui form" action="products" method="post">
-      <div class="field">
+    
+    <section id="add-product" class="ui segment">
+      <h1 class="ui header">Agregar un producto</h1>
+    <form class="ui form">
+      <div class="field required">
         <label for="title">Título</label>
         <input id="title" name="title" type="text">
       </div>
-      <div class="field">
+      <div class="field required">
         <label for="price">Precio</label>
         <input id="price" name="price" type="text">
       </div>
-      <div class="field">
+      <div class="field required">
         <label for="thumbnail">Thumbnail</label>
         <input id="thumbnail" name="thumbnail" type="text">
       </div>
-      <button id="submit" class="ui button fluid primary" type="submit">Agregar</button>
+      <div class="ui button submit primary" id="submitProduct">Agregar</div>
+      <div class="ui error message"></div>
     </form>
-    <div id="products">
-    </div>
+    </section>
+    
+    <section class="ui segment">
+      <div id="products">
+      </div>
+    </section>
+
+    <section id="message-center" class="ui segment">
+      <h1 class="ui header">Centro de Mensajes</h1>      
+      <form id="message-form" class="ui form">
+        <div class="field required">
+          <input id="email" name="email" type="text" placeholder="juan@example.com">
+        </div>
+        <div class="messages" id="messages"></div>
+        <div class="field">
+          <input id="message" name="message" type="text" placeholder="Ingresá tu mensaje...">
+        </div>
+        <div id="submitMessage" class="ui button submit primary">
+          Enviar
+        </div>
+        <div class="ui error message"></div>
+      </form>
+    </section>
+
   </div>
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
