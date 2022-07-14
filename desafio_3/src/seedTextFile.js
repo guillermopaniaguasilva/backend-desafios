@@ -25,5 +25,5 @@ const products = [
 ];
 
 (async function () {
-  await fs.promises.writeFile('./products.txt', JSON.stringify(products));
+  await fs.promises.writeFile('../products.txt', JSON.stringify(products));
 })();
